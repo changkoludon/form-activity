@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>แบบฟอร์มสมัครกิจกรรม อวท.</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #78A3D4;
+      color: #AA0000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fffaf4;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #4a4a4a;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.25rem;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      background-color: #f7c8e0;
+      color: #333;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #f4a6d6;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h1>แบบฟอร์มสมัครกิจกรรม อวท.</h1>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSdgf3cBA7DUsL96Qhnl9GIs2NZnmokYQCCU9LVf9vAcmczUOg/formResponse" method="POST" target="hidden_iframe" onsubmit="window.submitted=true">
+      
+      <label>รหัสนักเรียน</label>
+      <input type="number" name="entry.1828821431" required />
+
+      <label>คำนำหน้า</label>
+      <select name="entry.1806303790" required>
+        <option value="นาย">นาย</option>
+        <option value="นางสาว">นางสาว</option>
+      </select>
+
+      <label>ชื่อ-สกุล</label>
+      <input type="text" name="entry.1648756818" required />
+
+      <label>ระดับชั้น</label>
+      <select name="entry.1769346124" required>
+        <option value="ปวช.2">ปวช.2</option>
+        <option value="ปวช.3">ปวช.3</option>
+        <option value="ปวส.1">ปวส.1</option>
+      </select>
+
+      <label>ห้องเรียน</label>
+      <select name="entry.84463690" required>
+        <option value="ห้อง 1">ห้อง 1</option>
+        <option value="ห้อง 2">ห้อง 2</option>
+        <option value="ห้อง 3">ห้อง 3</option>
+        <option value="ห้อง 4">ห้อง 4</option>
+        <option value="ห้อง 5">ห้อง 5</option>
+        <option value="ห้อง 6">ห้อง 6</option>
+        <option value="ห้อง 7">ห้อง 7</option>
+      </select>
+
+      <label for="activity">กิจกรรม อวท.ที่สมัคร</label>
+      <select id="activity" name="entry.1994730299" required>
+        <option value="ช่างเครื่องเย็นและปรับอากาศ">ช่างเครื่องเย็นและปรับอากาศ</option>
+        <option value="ช่างติดตั้งไฟฟ้าภายในอาคาร">ช่างติดตั้งไฟฟ้าภายในอาคาร</option>
+        <option value="ช่างควบคุมเครื่องกลไฟฟ้า">ช่างควบคุมเครื่องกลไฟฟ้า</option>
+        <option value="ช่างอิเล็กทรอนิกส์ทั่วไป">ช่างอิเล็กทรอนิกส์ทั่วไป</option>
+        <option value="สิ่งประดิษฐ์จากวัสดุเหล็ก">สิ่งประดิษฐ์จากวัสดุเหล็ก</option>
+        <option value="ไฟฟ้ารถยนต์">ไฟฟ้ารถยนต์</option>
+        <option value="รถจักรยานยนต์">รถจักรยานยนต์</option>
+        <option value="ภาษาอังกฤษ">ภาษาอังกฤษ</option>
+        <option value="เทคโนโลยียานยนต์สมัยใหม่">เทคโนโลยียานยนต์สมัยใหม่</option>
+        <option value="ดาราศาสตร์">ดาราศาสตร์</option>
+        <option value="วิทยาศาสตร์หรรษา">วิทยาศาสตร์หรรษา</option>
+        <option value="ฟิตเนส">ฟิตเนส</option>
+      </select>
+
+      <button type="submit">ส่งแบบฟอร์ม</button>
+    </form>
+
+    <!-- Hidden iframe to avoid redirect -->
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  </div>
+</body>
+</html>
