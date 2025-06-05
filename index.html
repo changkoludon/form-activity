@@ -93,6 +93,19 @@
             transform: translateY(0);
         }
 
+        /* Styles for submission message (used for success here) */
+        #submissionMessage {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #4CAF50; /* Green text for success */
+            background-color: #e6ffe6; /* Light green background for success */
+            border: 1px solid #4CAF50; /* Green border for success */
+            display: none; /* Hidden by default */
+        }
+
         @media (max-width: 768px) {
             .form-container {
                 padding: 25px;
@@ -115,9 +128,10 @@
         <!-- The action URL is the Google Form's submission URL -->
         <!-- Based on the provided link, the submission URL is: -->
         <!-- https://docs.google.com/forms/d/e/1FAIpQLSdv7ltGldYxZm3Dc6IstSg3CcA3rLVeThDYwHiDuK_7Gj5aFw/formResponse -->
-        <form id="activityForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdv7ltGldYxZm3Dc6IstSg3CcA3rLVeThDYwHiDuK_7Gj5aFw/formResponse" method="POST" target="no-confirmation">
-            <!-- Hidden iframe to prevent confirmation page from Google Forms -->
-            <iframe name="no-confirmation" style="display:none;"></iframe>
+        <form id="activityForm" action="https://docs.google.com/forms/d/e/1FAIpQLSdv7ltGldYxZm3Dc6IstSg3CcA3rLVeThDYwHiDuK_7Gj5aFw/formResponse" method="POST">
+            <!-- Hidden iframe to submit the form data without page reload or CORS issues -->
+            <!-- We removed the onload attribute from the iframe; now handled by JS event listener -->
+            <iframe name="google-form-iframe" id="google-form-iframe" style="display:none;"></iframe>
 
             <div class="form-group">
                 <label for="studentId">รหัสนักเรียน</label>
@@ -183,7 +197,53 @@
 
             <button type="submit">ส่งข้อมูล</button>
         </form>
+        <!-- Message display area for success -->
+        <div id="submissionMessage"></div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const activityForm = document.getElementById('activityForm');
+            const submissionMessage = document.getElementById('submissionMessage');
+            const googleFormIframe = document.getElementById('google-form-iframe');
+
+            // Add an event listener to the form to trigger the submission
+            activityForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission (page reload)
+
+                // Set the iframe as the target for this submission
+                activityForm.target = 'google-form-iframe';
+
+                // Programmatically submit the form
+                activityForm.submit();
+
+                // Immediately reset the form fields
+                activityForm.reset(); 
+
+                // Show success message
+                submissionMessage.textContent = 'ส่งข้อมูลสำเร็จแล้ว';
+                submissionMessage.style.backgroundColor = '#e6ffe6'; /* Light green background */
+                submissionMessage.style.borderColor = '#4CAF50'; /* Green border */
+                submissionMessage.style.color = '#4CAF50'; /* Green text */
+                submissionMessage.style.display = 'block'; // Make the message visible
+
+                // Hide the message after a few seconds
+                setTimeout(() => {
+                    submissionMessage.style.display = 'none';
+                    submissionMessage.textContent = ''; // Clear the message content
+                }, 5000); // Hide after 5 seconds
+
+                // Clear the iframe src to prevent it from showing Google's confirmation page on next load
+                // and to prepare it for the next submission.
+                // A small delay is added to ensure the form submission has initiated before clearing.
+                setTimeout(() => {
+                    googleFormIframe.src = 'about:blank';
+                }, 1000); 
+            });
+
+            // No need for a separate iframe 'load' event listener if we manage
+            // reset and message display immediately after programmatic submission.
+        });
+    </script>
 </body>
 </html>
-
